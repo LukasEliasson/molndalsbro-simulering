@@ -14,3 +14,5 @@ texture = ExtResource("1_ak353")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ak353")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

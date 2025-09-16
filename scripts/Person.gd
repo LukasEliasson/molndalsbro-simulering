@@ -2,21 +2,20 @@ extends CharacterBody2D
 
 var path: Array = []
 var path_index: int = 0
-var speed: int = 100
+@export var speed: float = 100.0
+@onready var navigation_agent: NavigationAgent2D = get_node("NavigationAgent2D")
 
-func process_move(delta: float) -> void:
-	if path.is_empty():
-		return
+func _ready() -> void:
+	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
 	
-	var target = path[path_index]
-	var direction = (target - global_position).normalized()
-	velocity = direction * speed
+func set_target(target: Vector2) -> void:
+	navigation_agent.set_target_position(target)
+	
+func _on_velocity_computed(safe_velocity: Vector2):
+	velocity = safe_velocity
 	move_and_slide()
-	
-	if global_position.distance_to(target) < 5.0:
-		path_index += 1
-		if path_index >= path.size():
-			queue_free()
+
+
 
 func set_path(new_path: Array) -> void:
 	path = new_path
