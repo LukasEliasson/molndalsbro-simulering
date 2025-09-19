@@ -1,14 +1,30 @@
 extends Node2D
 
-@onready var entry1 = $EntryPoints/Entry1
-@onready var entry2 = $EntryPoints/Entry2
 @export var person_scene = preload("res://scenes/Person.tscn")
+@export var spawn_interval: float = 1.0
 
 func _ready() -> void:
 	spawn_person()
 
+var spawn_cooldown = spawn_interval
+
+func _process(delta: float) -> void:
+	spawn_cooldown -= delta
+	if spawn_cooldown <= 0:
+		spawn_person()
+		spawn_cooldown = spawn_interval
+	
 func spawn_person():
+	var entries = $EntryPoints.get_children()
+	if entries.size() < 2:
+		return
+	
+	var entry = entries.pick_random()
+	var exit = entries.pick_random()
+	while entry == exit:
+		exit = entries.pick_random()
+	
 	var person = person_scene.instantiate()
 	add_child(person)
-	person.global_position = entry1.global_position
-	person.set_target(entry2.global_position)
+	person.global_position = entry.global_position
+	person.set_target(exit.global_position)
