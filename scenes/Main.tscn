@@ -7,4 +7,3 @@
 script = ExtResource("1_elqb8")
 
 [node name="Station" parent="." instance=ExtResource("2_rvslj")]
-position = Vector2(85.1888, 195.031)

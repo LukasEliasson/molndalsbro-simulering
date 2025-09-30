@@ -4,22 +4,25 @@
 [ext_resource type="Texture2D" uid="uid://csenle71pqtx8" path="res://assets/person_sprite.png" id="1_ak353"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ak353"]
-radius = 9.0
+radius = 8.88889
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.9, 0.9)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_3oddt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ak353")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.7, 0.7)
 shape = SubResource("CircleShape2D_ak353")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 3.0
-target_desired_distance = 3.0
-path_postprocessing = 1
 avoidance_enabled = true
-radius = 5.0
-debug_enabled = true
+radius = 7.5
+neighbor_distance = 25.0
+max_neighbors = 5
+time_horizon_agents = 3.0
 debug_path_custom_color = Color(0, 1, 0, 1)
