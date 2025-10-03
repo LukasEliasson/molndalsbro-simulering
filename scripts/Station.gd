@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var person_scene = preload("res://scenes/Person.tscn")
-@export var spawn_interval: float = 0.4
+@export var spawn_interval: float = 0.1
 
 func _ready() -> void:
 	spawn_person()

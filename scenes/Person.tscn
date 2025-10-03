@@ -20,9 +20,10 @@ scale = Vector2(0.7, 0.7)
 shape = SubResource("CircleShape2D_ak353")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 50.0
+path_max_distance = 50.0
 avoidance_enabled = true
-radius = 7.5
-neighbor_distance = 25.0
-max_neighbors = 5
-time_horizon_agents = 3.0
+radius = 8.0
+neighbor_distance = 50.0
+max_neighbors = 20
 debug_path_custom_color = Color(0, 1, 0, 1)
