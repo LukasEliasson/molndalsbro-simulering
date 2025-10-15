@@ -3,6 +3,9 @@ extends CanvasLayer
 @onready var agent_manager = get_node(agent_manager_path)  # Drag your agent manager node here
 @onready var label = $Label
 
-func _process(delta):
-	print(agent_manager.get_agent_count())
-	#label.text = "Agents: %d" % get_agent_count()
+func _ready() -> void:
+	var reciever = get_node("/root/Main/Station")
+	reciever.connect("set_agent_count", Callable(self, "_on_agent_count_changed"))
+
+func _on_agent_count_changed(agent_count):
+	label.text = "Agents: %d" % agent_count
