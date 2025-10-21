@@ -1,15 +1,15 @@
 extends Node2D
 
 @export var person_scene = preload("res://scenes/Person.tscn")
-@export var spawn_interval: float = 0.1
+@export var spawn_interval: float = 0.2
 
 var agents = []
 var simulation_paused = false
 signal set_agent_count(count)
 
 func _ready() -> void:
-	var reciever = get_node("/root/Main")
-	reciever.connect("set_simulation_pause", Callable(self, "_on_set_simulation_pause"))
+	var receiver = get_node("/root/Main")
+	receiver.connect("set_simulation_pause", Callable(self, "_on_set_simulation_pause"))
 	spawn_person()
 
 var spawn_cooldown = spawn_interval
@@ -33,7 +33,7 @@ func _physics_process(delta):
 			spawn_cooldown = spawn_interval
 
 func spawn_person():
-	if not simulation_paused:
+	if not simulation_paused and agents.size() < 500:
 		var entries = $EntryPoints.get_children()
 		var entry = entries.pick_random()
 		var exit = entries.pick_random()

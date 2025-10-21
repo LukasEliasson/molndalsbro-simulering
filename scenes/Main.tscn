@@ -18,3 +18,5 @@ script = ExtResource("3_0bbpv")
 [node name="Label" type="Label" parent="UI"]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
