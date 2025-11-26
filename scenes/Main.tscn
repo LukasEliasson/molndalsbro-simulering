@@ -10,7 +10,6 @@ process_physics_priority = 1
 script = ExtResource("1_elqb8")
 
 [node name="Station" parent="." instance=ExtResource("2_rvslj")]
-position = Vector2(16, 16)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("3_0bbpv")
@@ -18,5 +17,7 @@ script = ExtResource("3_0bbpv")
 [node name="Label" type="Label" parent="UI"]
 offset_right = 40.0
 offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(4472, 3728)

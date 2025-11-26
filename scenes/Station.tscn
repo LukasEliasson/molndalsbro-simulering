@@ -1,12 +1,60 @@
-[gd_scene load_steps=2 format=3 uid="uid://wpg5rjqfmpya"]
+[gd_scene load_steps=11 format=3 uid="uid://wpg5rjqfmpya"]
 
 [ext_resource type="Script" uid="uid://ju8h7b33s5ah" path="res://scripts/Station.gd" id="1_wy22o"]
+[ext_resource type="Texture2D" uid="uid://cgs0txy58ni0l" path="res://assets/tiles/highres/tile_2_1.png" id="2_wy22o"]
+[ext_resource type="Texture2D" uid="uid://cnn72upxvgil3" path="res://assets/tiles/highres/tile_0_1.png" id="3_024pm"]
+[ext_resource type="Texture2D" uid="uid://d3vcxgovrw7ck" path="res://assets/tiles/highres/tile_0_2.png" id="4_qjulp"]
+[ext_resource type="Texture2D" uid="uid://dgxojtauxr5w0" path="res://assets/tiles/highres/tile_1_1.png" id="7_hk4pu"]
+[ext_resource type="Texture2D" uid="uid://bm314ua0bw8xu" path="res://assets/tiles/highres/tile_1_2.png" id="8_jolm3"]
+[ext_resource type="PackedScene" uid="uid://bv8ihuar88lfp" path="res://scenes/Person.tscn" id="10_hk4pu"]
+[ext_resource type="Texture2D" uid="uid://ykdyk4rukysr" path="res://assets/tiles/highres/tile_2_2.png" id="12_dgwd3"]
+[ext_resource type="Texture2D" uid="uid://cqmbgp2jyucn1" path="res://assets/tiles/highres/tile_3_1.png" id="15_6wosg"]
+[ext_resource type="Texture2D" uid="uid://c7mhhrhtmp6fc" path="res://assets/tiles/highres/tile_3_2.png" id="16_e7t4q"]
 
 [node name="Station" type="Node2D"]
 script = ExtResource("1_wy22o")
 
+[node name="Map" type="Node2D" parent="."]
+
+[node name="0_1" type="Sprite2D" parent="Map"]
+position = Vector2(2048, 2048)
+texture = ExtResource("3_024pm")
+
+[node name="0_2" type="Sprite2D" parent="Map"]
+position = Vector2(2048, 6144)
+texture = ExtResource("4_qjulp")
+
+[node name="1_0" type="Sprite2D" parent="Map"]
+position = Vector2(6144, 2048)
+texture = ExtResource("7_hk4pu")
+
+[node name="1_1" type="Sprite2D" parent="Map"]
+position = Vector2(6144, 6144)
+texture = ExtResource("8_jolm3")
+
+[node name="2_0" type="Sprite2D" parent="Map"]
+position = Vector2(10240, 2048)
+texture = ExtResource("2_wy22o")
+
+[node name="2_1" type="Sprite2D" parent="Map"]
+position = Vector2(10240, 6144)
+texture = ExtResource("12_dgwd3")
+
+[node name="3_0" type="Sprite2D" parent="Map"]
+position = Vector2(14336, 2048)
+texture = ExtResource("15_6wosg")
+
+[node name="3_1" type="Sprite2D" parent="Map"]
+position = Vector2(14336, 6144)
+texture = ExtResource("16_e7t4q")
+
 [node name="EntryPoints" type="Node2D" parent="."]
-position = Vector2(-1, -8)
 
 [node name="Entry1" type="Marker2D" parent="EntryPoints"]
-position = Vector2(41, 96)
+position = Vector2(4065, 3752)
+
+[node name="Entry2" type="Marker2D" parent="EntryPoints"]
+position = Vector2(4681, 3832)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("10_hk4pu")]
+position = Vector2(4056, 3736)

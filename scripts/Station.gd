@@ -5,11 +5,17 @@ extends Node2D
 
 var agents = []
 var simulation_paused = false
+var entries
 signal set_agent_count(count)
 
 func _ready() -> void:
 	var receiver = get_node("/root/Main")
 	receiver.connect("set_simulation_pause", Callable(self, "_on_set_simulation_pause"))
+	
+	entries = $EntryPoints.get_children()
+	if entries.size() == 1:
+		print("Add more entries on the map or the program will freeze.")
+	
 	spawn_person()
 
 var spawn_cooldown = spawn_interval
@@ -34,7 +40,6 @@ func _physics_process(delta):
 
 func spawn_person():
 	if not simulation_paused and agents.size() < 500:
-		var entries = $EntryPoints.get_children()
 		var entry = entries.pick_random()
 		var exit = entries.pick_random()
 		while entry == exit:
