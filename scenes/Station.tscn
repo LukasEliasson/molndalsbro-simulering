@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://wpg5rjqfmpya"]
+[gd_scene load_steps=11 format=3 uid="uid://wpg5rjqfmpya"]
 
 [ext_resource type="Script" uid="uid://ju8h7b33s5ah" path="res://scripts/Station.gd" id="1_wy22o"]
 [ext_resource type="Texture2D" uid="uid://cgs0txy58ni0l" path="res://assets/tiles/highres/tile_2_1.png" id="2_wy22o"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://d3vcxgovrw7ck" path="res://assets/tiles/highres/tile_0_2.png" id="4_qjulp"]
 [ext_resource type="Texture2D" uid="uid://dgxojtauxr5w0" path="res://assets/tiles/highres/tile_1_1.png" id="7_hk4pu"]
 [ext_resource type="Texture2D" uid="uid://bm314ua0bw8xu" path="res://assets/tiles/highres/tile_1_2.png" id="8_jolm3"]
-[ext_resource type="PackedScene" uid="uid://bv8ihuar88lfp" path="res://scenes/Person.tscn" id="10_hk4pu"]
 [ext_resource type="Texture2D" uid="uid://ykdyk4rukysr" path="res://assets/tiles/highres/tile_2_2.png" id="12_dgwd3"]
 [ext_resource type="Texture2D" uid="uid://cqmbgp2jyucn1" path="res://assets/tiles/highres/tile_3_1.png" id="15_6wosg"]
 [ext_resource type="Texture2D" uid="uid://c7mhhrhtmp6fc" path="res://assets/tiles/highres/tile_3_2.png" id="16_e7t4q"]
@@ -102,6 +101,3 @@ position = Vector2(6312, 4784)
 
 [node name="Entry15" type="Marker2D" parent="EntryPoints"]
 position = Vector2(6344, 4408)
-
-[node name="CharacterBody2D2" parent="." instance=ExtResource("10_hk4pu")]
-position = Vector2(8365.22, 2084.4)
