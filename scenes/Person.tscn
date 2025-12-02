@@ -7,23 +7,23 @@
 radius = 8.88889
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-scale = Vector2(0.9, 0.9)
+scale = Vector2(1.4, 1.4)
 script = ExtResource("1_3oddt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ak353")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.9, 0.9)
 shape = SubResource("CircleShape2D_ak353")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 25.0
+path_desired_distance = 90.0
 target_desired_distance = 50.0
-path_max_distance = 50.0
+path_max_distance = 150.0
+path_postprocessing = 1
 avoidance_enabled = true
-radius = 8.0
-neighbor_distance = 20.0
+radius = 16.0
 max_neighbors = 20
 time_horizon_obstacles = 1.0
 debug_enabled = true

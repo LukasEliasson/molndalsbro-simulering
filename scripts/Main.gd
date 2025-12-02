@@ -24,14 +24,14 @@ func handle_input(delta):
 	else:
 		multi = 1
 		
+	var zoom_speed = 4
+
 	if Input.is_action_pressed("zoom_in"):
 		if camera.zoom.x < 5:
-			camera.zoom.x *= 1.05
-			camera.zoom.y *= 1.05
+			camera.zoom *= pow(zoom_speed, delta)
 	elif Input.is_action_pressed("zoom_out"):
 		if camera.zoom.x > 0.2:
-			camera.zoom.x *= 0.95
-			camera.zoom.y *= 0.95
+			camera.zoom /= pow(zoom_speed, delta)
 	
 	if input_dir != Vector2.ZERO:
 		emit_signal("set_simulation_pause", false)
