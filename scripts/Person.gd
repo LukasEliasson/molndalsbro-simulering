@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 100.0
+@export var speed: float = 68.0
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 var previous_distance: float = 0.0
