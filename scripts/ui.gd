@@ -1,6 +1,4 @@
 extends CanvasLayer
-@export var agent_manager_path = "res://scenes/Station.tscn"
-@onready var agent_manager = get_node(agent_manager_path)  # Drag your agent manager node here
 @onready var label = $Label
 
 func _ready() -> void:

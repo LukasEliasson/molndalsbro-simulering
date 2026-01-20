@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed: float = 68.0
+var std_dev = 0.2 # Standard devation for speed. The higher the more difference in speed between agents
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 var previous_distance: float = 0.0
@@ -12,6 +13,7 @@ var simulation_paused = false
 var target
 
 func _ready() -> void:
+	speed *= random_speed_multiplier()
 	navigation_agent.velocity_computed.connect(_on_velocity_computed)
 
 func set_target(local_target: Vector2) -> void:
@@ -46,3 +48,14 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	if not simulation_paused:
 		velocity = safe_velocity
 		move_and_slide()
+
+func rand_normal(mean: float = 0.0, std_dev: float = 1.0) -> float:
+	var u1 = randf()
+	var u2 = randf()
+	var z0 = sqrt(-2.0 * log(u1)) * cos(2.0 * PI * u2)
+	return z0 * std_dev + mean
+
+func random_speed_multiplier() -> float:
+	var mean = 1.0
+	var value = rand_normal(mean, std_dev)
+	return clamp(value, 0.6, 1.4)

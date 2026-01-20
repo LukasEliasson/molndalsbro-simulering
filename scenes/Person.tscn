@@ -22,5 +22,4 @@ avoidance_enabled = true
 radius = 16.0
 max_neighbors = 20
 time_horizon_obstacles = 1.0
-debug_enabled = true
 debug_path_custom_color = Color(0, 1, 0, 1)

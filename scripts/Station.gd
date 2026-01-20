@@ -6,6 +6,9 @@ extends Node2D
 var agents = []
 var simulation_paused = false
 var entries
+var exits
+var entry_weights = []
+var exit_weights = []
 signal set_agent_count(count)
 
 func _ready() -> void:
@@ -15,6 +18,11 @@ func _ready() -> void:
 	entries = $EntryPoints.get_children()
 	if entries.size() == 1:
 		print("Add more entries on the map or the program will freeze.")
+		
+	for i in entries:
+		print(i.name) # TODO Remove
+		
+	print(entry_weights) # TODO Read all data and create odds system
 	
 	spawn_person()
 
