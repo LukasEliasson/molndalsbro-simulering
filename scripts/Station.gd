@@ -3,28 +3,42 @@ extends Node2D
 @export var person_scene = preload("res://scenes/Person.tscn")
 @export var spawn_interval: float = 0.2
 
+var rng = RandomNumberGenerator.new()
+
 var agents = []
 var simulation_paused = false
-var entries
-var exits
+var config_file
+
+var combo_points = []
+var entry_points = []
+var exit_points = []
+
+var combo_weights = []
 var entry_weights = []
 var exit_weights = []
+
+var possible_entries = []
+var possible_exits = []
+var possible_entries_weights = []
+var possible_exits_weights = []
+
 signal set_agent_count(count)
 
 func _ready() -> void:
 	var receiver = get_node("/root/Main")
 	receiver.connect("set_simulation_pause", Callable(self, "_on_set_simulation_pause"))
 	
-	entries = $EntryPoints.get_children()
-	if entries.size() == 1:
-		print("Add more entries on the map or the program will freeze.")
-		
-	for i in entries:
-		print(i.name) # TODO Remove
-		
-	print(entry_weights) # TODO Read all data and create odds system
+	combo_points = $SpawnPoints/ComboPoints.get_children()
+	entry_points = $SpawnPoints/EntryPoints.get_children()
+	exit_points = $SpawnPoints/ExitPoints.get_children()
 	
-	spawn_person()
+	possible_entries = combo_points + entry_points
+	possible_exits = combo_points + exit_points
+	
+	set_spawn_weights()
+	
+	possible_entries_weights = combo_weights + entry_weights
+	possible_exits_weights = combo_weights + exit_weights
 
 var spawn_cooldown = spawn_interval
 
@@ -48,10 +62,11 @@ func _physics_process(delta):
 
 func spawn_person():
 	if not simulation_paused and agents.size() < 500:
-		var entry = entries.pick_random()
-		var exit = entries.pick_random()
-		while entry == exit:
-			exit = entries.pick_random()
+		var entry = pick_entry_point()
+		var exit = pick_exit_point()
+		
+		while entry == exit or (entry_points.has(entry) and exit_points.has(exit) and (entry.name.substr(entry.name.length() - 1) != exit.name.substr(exit.name.length() - 1))):
+			exit = pick_exit_point()
 		
 		var person = person_scene.instantiate()
 		add_child(person)
@@ -64,3 +79,17 @@ func _on_set_simulation_pause(state):
 	simulation_paused = state
 	for i in range(agents.size()):
 		agents[i].simulation_paused = state
+		
+func pick_entry_point():
+	return (possible_entries)[rng.rand_weighted(possible_entries_weights)]
+	
+func pick_exit_point():
+	return (possible_exits)[rng.rand_weighted(possible_exits_weights)]
+		
+func set_spawn_weights():
+	for point in combo_points:
+		combo_weights.append(config_file.get_value("Combo", point.name))
+	for point in entry_points:
+		entry_weights.append(config_file.get_value("Entry", point.name))
+	for point in exit_points:
+		exit_weights.append(config_file.get_value("Exit", point.name))

@@ -3,24 +3,24 @@ extends Node2D
 var station_scene = preload("res://scenes/Station.tscn")
 var ui_scene = preload("res://scenes/ui.tscn")
 
-var config = ConfigFile.new()
-var err = config.load("res://config.cfg")
+var config_file = ConfigFile.new()
+var err = config_file.load("res://config.cfg")
 
 @onready var camera = $Camera2D
 const MOVE_SPEED = 900
 var multi = 1
 signal set_simulation_pause(state)
+var simulation_pause = false
 
 func _ready():
 	# If the file didn't load, create a default file
 	if err != OK:
 		print("Config file not found! File created with default values.")
 		create_default_config()
-		config.save("res://config.cfg")
+		config_file.save("res://config.cfg")
 	
 	var station = station_scene.instantiate()
-	
-	station.entry_weights = config.get_value("Both", "Stairs") # TODO Identify all data
+	station.config_file = config_file
 	
 	add_child(station)
 	var ui = ui_scene.instantiate()
@@ -52,12 +52,36 @@ func handle_input(delta):
 	elif Input.is_action_pressed("zoom_out"):
 		if camera.zoom.x > 0.2:
 			camera.zoom /= pow(zoom_speed, delta)
+	elif Input.is_action_just_pressed("simulation_pause"):
+		if simulation_pause:
+			emit_signal("set_simulation_pause", false)
+			simulation_pause = false
+		else:
+			emit_signal("set_simulation_pause", true)
+			simulation_pause = true
 	
 	if input_dir != Vector2.ZERO:
-		emit_signal("set_simulation_pause", false)
 		camera.position += input_dir.normalized() * MOVE_SPEED * delta * multi / camera.zoom.x
-	else:
-		emit_signal("set_simulation_pause", false)
 		
 func create_default_config():
-	config.set_value("Both", "Stairs", "weight") # TODO Create default values
+	config_file.set_value("Combo", "Stairs1", 1.0) # TODO Create default values
+	config_file.set_value("Combo", "Stairs2", 0.1)
+	config_file.set_value("Combo", "Stairs3", 1.0)
+	config_file.set_value("Combo", "Street1", 1.0)
+	config_file.set_value("Combo", "Street2", 1.0)
+	config_file.set_value("Combo", "Elevator1", 0.1)
+	config_file.set_value("Combo", "Elevator2", 0.1)
+	config_file.set_value("Combo", "Bus1", 0.25)
+	config_file.set_value("Combo", "Bus2", 0.25)
+	config_file.set_value("Combo", "Bus3", 0.25)
+	config_file.set_value("Combo", "Bus4", 0.25)
+	config_file.set_value("Combo", "Bus5", 0.25)
+	config_file.set_value("Combo", "Bus6", 0.25)
+	config_file.set_value("Combo", "Bus7", 0.25)
+	config_file.set_value("Combo", "Bus8", 0.25)
+	
+	config_file.set_value("Entry", "Escalator1_1", 1.0)
+	config_file.set_value("Entry", "Escalator2_1", 1.0)
+	
+	config_file.set_value("Exit", "Escalator1_2", 1.0)
+	config_file.set_value("Exit", "Escalator2_2", 1.0)

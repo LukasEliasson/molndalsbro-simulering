@@ -59,64 +59,70 @@ texture = ExtResource("16_e7t4q")
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_hk4pu")
 
-[node name="EntryPoints" type="Node2D" parent="."]
+[node name="SpawnPoints" type="Node2D" parent="."]
 
-[node name="Escalator1_1" type="Marker2D" parent="EntryPoints"]
-position = Vector2(4065, 3752)
+[node name="ComboPoints" type="Node2D" parent="SpawnPoints"]
 
-[node name="Escalator1_2" type="Marker2D" parent="EntryPoints"]
-position = Vector2(4136, 3744)
-
-[node name="Escalator2_1" type="Marker2D" parent="EntryPoints"]
-position = Vector2(8416, 2200)
-
-[node name="Escalator2_2" type="Marker2D" parent="EntryPoints"]
-position = Vector2(8472, 2184)
-
-[node name="Stairs1" type="Marker2D" parent="EntryPoints"]
+[node name="Stairs1" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(4913, 3333)
 
-[node name="Stairs2" type="Marker2D" parent="EntryPoints"]
+[node name="Stairs2" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(8245, 1221)
 
-[node name="Stairs3" type="Marker2D" parent="EntryPoints"]
+[node name="Stairs3" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(10809, 1313)
 
-[node name="Street1" type="Marker2D" parent="EntryPoints"]
+[node name="Street1" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(14080, 64)
 
-[node name="Street2" type="Marker2D" parent="EntryPoints"]
+[node name="Street2" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(4730, 5242)
 
-[node name="Elevator1" type="Marker2D" parent="EntryPoints"]
+[node name="Elevator1" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(4797, 3619)
 
-[node name="Elevator2" type="Marker2D" parent="EntryPoints"]
+[node name="Elevator2" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(8207, 865)
 
-[node name="Bus1" type="Marker2D" parent="EntryPoints"]
+[node name="Bus1" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(9848, 2784)
 
-[node name="Bus2" type="Marker2D" parent="EntryPoints"]
+[node name="Bus2" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(9800, 2456)
 
-[node name="Bus3" type="Marker2D" parent="EntryPoints"]
+[node name="Bus3" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(8688, 3048)
 
-[node name="Bus4" type="Marker2D" parent="EntryPoints"]
+[node name="Bus4" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(8672, 3472)
 
-[node name="Bus5" type="Marker2D" parent="EntryPoints"]
+[node name="Bus5" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(7528, 4112)
 
-[node name="Bus6" type="Marker2D" parent="EntryPoints"]
+[node name="Bus6" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(7536, 3696)
 
-[node name="Bus7" type="Marker2D" parent="EntryPoints"]
+[node name="Bus7" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(6312, 4784)
 
-[node name="Bus8" type="Marker2D" parent="EntryPoints"]
+[node name="Bus8" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(6344, 4408)
+
+[node name="EntryPoints" type="Node2D" parent="SpawnPoints"]
+
+[node name="Escalator1_1" type="Marker2D" parent="SpawnPoints/EntryPoints"]
+position = Vector2(4065, 3752)
+
+[node name="Escalator2_1" type="Marker2D" parent="SpawnPoints/EntryPoints"]
+position = Vector2(8416, 2200)
+
+[node name="ExitPoints" type="Node2D" parent="SpawnPoints"]
+
+[node name="Escalator1_2" type="Marker2D" parent="SpawnPoints/ExitPoints"]
+position = Vector2(4136, 3744)
+
+[node name="Escalator2_2" type="Marker2D" parent="SpawnPoints/ExitPoints"]
+position = Vector2(8472, 2184)
 
 [node name="CollisionBody" type="StaticBody2D" parent="."]
 visible = false
