@@ -3,6 +3,10 @@ extends Node2D
 @export var person_scene = preload("res://scenes/Person.tscn")
 @export var spawn_interval: float = 0.2
 
+# Average size of a cluster spawn to offset 
+# the entry weight compared to the exit weight
+var cluster_weight_offset = 0.02857
+
 var rng = RandomNumberGenerator.new()
 
 var agents = []
@@ -12,10 +16,12 @@ var config_file
 var combo_points = []
 var entry_points = []
 var exit_points = []
+var cluster_points = []
 
 var combo_weights = []
 var entry_weights = []
 var exit_weights = []
+var cluster_weights = []
 
 var possible_entries = []
 var possible_exits = []
@@ -31,14 +37,20 @@ func _ready() -> void:
 	combo_points = $SpawnPoints/ComboPoints.get_children()
 	entry_points = $SpawnPoints/EntryPoints.get_children()
 	exit_points = $SpawnPoints/ExitPoints.get_children()
+	cluster_points = $SpawnPoints/ClusterPoints.get_children()
 	
-	possible_entries = combo_points + entry_points
-	possible_exits = combo_points + exit_points
+	possible_entries = combo_points + entry_points + cluster_points
+	possible_exits = combo_points + exit_points + cluster_points
 	
 	set_spawn_weights()
 	
 	possible_entries_weights = combo_weights + entry_weights
-	possible_exits_weights = combo_weights + exit_weights
+	possible_exits_weights = combo_weights + exit_weights + cluster_weights
+	
+	# To compensate for clusterpoints spawning more people the weights is 
+	# offset by dividing by the average size of cluster spawn
+	for i in cluster_weights:
+		possible_entries_weights.append(i*cluster_weight_offset)
 
 var spawn_cooldown = spawn_interval
 
@@ -63,17 +75,26 @@ func _physics_process(delta):
 func spawn_person():
 	if not simulation_paused and agents.size() < 500:
 		var entry = pick_entry_point()
-		var exit = pick_exit_point()
 		
-		while entry == exit or (entry_points.has(entry) and exit_points.has(exit) and (entry.name.substr(entry.name.length() - 1) != exit.name.substr(exit.name.length() - 1))):
-			exit = pick_exit_point()
+		if not cluster_points.has(entry):
+			create_agent(entry)
+		else:
+			for i in range(randi_range(10,60)):
+				create_agent(entry)
+				await get_tree().create_timer(0.5).timeout
 		
-		var person = person_scene.instantiate()
-		add_child(person)
-		person.global_position = entry.global_position
-		person.set_target(exit.global_position)
-		agents.append(person)
-		emit_signal("set_agent_count", agents.size())
+func create_agent(entry):
+	var exit = pick_exit_point()
+		
+	while entry == exit or (entry_points.has(entry) and exit_points.has(exit) and (entry.name.substr(entry.name.length() - 1) != exit.name.substr(exit.name.length() - 1))):
+		exit = pick_exit_point()
+	
+	var person = person_scene.instantiate()
+	add_child(person)
+	person.global_position = entry.global_position
+	person.set_target(exit.global_position)
+	agents.append(person)
+	emit_signal("set_agent_count", agents.size())
 	
 func _on_set_simulation_pause(state):
 	simulation_paused = state
@@ -93,3 +114,5 @@ func set_spawn_weights():
 		entry_weights.append(config_file.get_value("Entry", point.name))
 	for point in exit_points:
 		exit_weights.append(config_file.get_value("Exit", point.name))
+	for point in cluster_points:
+		cluster_weights.append(config_file.get_value("Cluster", point.name))

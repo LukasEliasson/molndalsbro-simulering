@@ -84,30 +84,6 @@ position = Vector2(4797, 3619)
 [node name="Elevator2" type="Marker2D" parent="SpawnPoints/ComboPoints"]
 position = Vector2(8207, 865)
 
-[node name="Bus1" type="Marker2D" parent="SpawnPoints/ComboPoints"]
-position = Vector2(9848, 2784)
-
-[node name="Bus2" type="Marker2D" parent="SpawnPoints/ComboPoints"]
-position = Vector2(9800, 2456)
-
-[node name="Bus3" type="Marker2D" parent="SpawnPoints/ComboPoints"]
-position = Vector2(8688, 3048)
-
-[node name="Bus4" type="Marker2D" parent="SpawnPoints/ComboPoints"]
-position = Vector2(8672, 3472)
-
-[node name="Bus5" type="Marker2D" parent="SpawnPoints/ComboPoints"]
-position = Vector2(7528, 4112)
-
-[node name="Bus6" type="Marker2D" parent="SpawnPoints/ComboPoints"]
-position = Vector2(7536, 3696)
-
-[node name="Bus7" type="Marker2D" parent="SpawnPoints/ComboPoints"]
-position = Vector2(6312, 4784)
-
-[node name="Bus8" type="Marker2D" parent="SpawnPoints/ComboPoints"]
-position = Vector2(6344, 4408)
-
 [node name="EntryPoints" type="Node2D" parent="SpawnPoints"]
 
 [node name="Escalator1_1" type="Marker2D" parent="SpawnPoints/EntryPoints"]
@@ -123,6 +99,32 @@ position = Vector2(4136, 3744)
 
 [node name="Escalator2_2" type="Marker2D" parent="SpawnPoints/ExitPoints"]
 position = Vector2(8472, 2184)
+
+[node name="ClusterPoints" type="Node2D" parent="SpawnPoints"]
+
+[node name="Bus1" type="Marker2D" parent="SpawnPoints/ClusterPoints"]
+position = Vector2(9848, 2784)
+
+[node name="Bus2" type="Marker2D" parent="SpawnPoints/ClusterPoints"]
+position = Vector2(9800, 2456)
+
+[node name="Bus3" type="Marker2D" parent="SpawnPoints/ClusterPoints"]
+position = Vector2(8688, 3048)
+
+[node name="Bus4" type="Marker2D" parent="SpawnPoints/ClusterPoints"]
+position = Vector2(8672, 3472)
+
+[node name="Bus5" type="Marker2D" parent="SpawnPoints/ClusterPoints"]
+position = Vector2(7528, 4112)
+
+[node name="Bus6" type="Marker2D" parent="SpawnPoints/ClusterPoints"]
+position = Vector2(7536, 3696)
+
+[node name="Bus7" type="Marker2D" parent="SpawnPoints/ClusterPoints"]
+position = Vector2(6312, 4784)
+
+[node name="Bus8" type="Marker2D" parent="SpawnPoints/ClusterPoints"]
+position = Vector2(6344, 4408)
 
 [node name="CollisionBody" type="StaticBody2D" parent="."]
 visible = false
