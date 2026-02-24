@@ -64,25 +64,25 @@ func handle_input(delta):
 		camera.position += input_dir.normalized() * MOVE_SPEED * delta * multi / camera.zoom.x
 		
 func create_default_config():
-	config_file.set_value("Combo", "Stairs1", 1.0) # TODO Create default values
+	config_file.set_value("Combo", "Stairs1", 1.5) # TODO Create default values
 	config_file.set_value("Combo", "Stairs2", 0.1)
-	config_file.set_value("Combo", "Stairs3", 1.0)
-	config_file.set_value("Combo", "Street1", 1.0)
-	config_file.set_value("Combo", "Street2", 1.0)
+	config_file.set_value("Combo", "Stairs3", 0.1)
+	config_file.set_value("Combo", "Street1", 0.5)
+	config_file.set_value("Combo", "Street2", 0.3)
 	config_file.set_value("Combo", "Elevator1", 0.1)
-	config_file.set_value("Combo", "Elevator2", 0.1)
+	config_file.set_value("Combo", "Elevator2", 0.05)
 	
-	config_file.set_value("Entry", "Escalator1_1", 1.0)
-	config_file.set_value("Entry", "Escalator2_1", 1.0)
+	config_file.set_value("Entry", "Escalator1_1", 2.0)
+	config_file.set_value("Entry", "Escalator2_1", 4.0)
 	
-	config_file.set_value("Exit", "Escalator1_2", 1.0)
-	config_file.set_value("Exit", "Escalator2_2", 1.0)
+	config_file.set_value("Exit", "Escalator1_2", 2.0)
+	config_file.set_value("Exit", "Escalator2_2", 4.0)
 	
-	config_file.set_value("Cluster", "Bus1", 1.0)
-	config_file.set_value("Cluster", "Bus2", 1.0)
-	config_file.set_value("Cluster", "Bus3", 1.0)
-	config_file.set_value("Cluster", "Bus4", 1.0)
-	config_file.set_value("Cluster", "Bus5", 1.0)
-	config_file.set_value("Cluster", "Bus6", 1.0)
-	config_file.set_value("Cluster", "Bus7", 1.0)
-	config_file.set_value("Cluster", "Bus8", 1.0)
+	config_file.set_value("Cluster", "Bus1", 0.5)
+	config_file.set_value("Cluster", "Bus2", 0.5)
+	config_file.set_value("Cluster", "Bus3", 0.5)
+	config_file.set_value("Cluster", "Bus4", 0.5)
+	config_file.set_value("Cluster", "Bus5", 0.5)
+	config_file.set_value("Cluster", "Bus6", 0.5)
+	config_file.set_value("Cluster", "Bus7", 0.5)
+	config_file.set_value("Cluster", "Bus8", 0.5)
