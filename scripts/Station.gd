@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var person_scene = preload("res://scenes/Person.tscn")
-@export var spawn_interval: float = 0.2
+@export var spawn_interval: float = 0.4
 
 # Average size of a cluster spawn to offset 
 # the entry weight compared to the exit weight
@@ -80,8 +80,9 @@ func spawn_person():
 			create_agent(entry)
 		else:
 			for i in range(randi_range(10,60)):
-				create_agent(entry)
-				await get_tree().create_timer(0.5).timeout
+				if not simulation_paused and agents.size() < 500:
+					create_agent(entry)
+					await get_tree().create_timer(0.5).timeout
 		
 func create_agent(entry):
 	var exit = pick_exit_point()
